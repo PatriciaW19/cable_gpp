@@ -1,0 +1,5 @@
+<library path="lib/libtangle_single_robot">
+    <class name="global_planner/tangle_single_robot" type="global_planner::GlobalPlanner" base_class_type="mbf_costmap_core::CostmapPlanner">
+        <description>This is a global planner plugin by iroboapp project.</description>
+    </class>
+</library>
