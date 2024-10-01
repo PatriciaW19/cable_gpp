@@ -10,25 +10,33 @@
 #include <base_local_planner/costmap_model.h>
 #include <mbf_costmap_core/costmap_planner.h>
 #include <mbf_msgs/GetPathResult.h>
+#include <string>
 
-using std::string;
+// using std::string;
 
 #ifndef CABLE_GPP
 #define CABLE_GPP
 
-namespace cable_gpp
+namespace cable_gpp_ns
 {
-    class cable_gpp: public mbf_costmap_core::CostmapPlanner {
+    class cable_gpp : public mbf_costmap_core::CostmapPlanner
+    {
     public:
         cable_gpp();
         cable_gpp(std::string name, costmap_2d::Costmap2DROS *costmap_ros);
 
-    }
+        void initialize(std::string name, costmap_2d::Costmap2DROS *costmap_ros);
+        void initialize(std::string name, 
+                            costmap_2d::Costmap2DROS *costmap_ros,
+                            std::string global_frame);
+        uint32_t makePlan(const geometry_msgs::PoseStamped &start,
+                        const geometry_msgs::PoseStamped &goal,
+                        double tolerance,
+                        std::vector<geometry_msgs::PoseStamped> &plan,
+                        double &cost,
+                        std::string &message);
 
-    void initialize(std::string name, costmap_2d::Costmap2DROS *costmap_ros);
-    bool makePlan(const geometry_msgs::PoseStamped &start,
-                  const geometry_msgs::PoseStamped &goal,
-                  std::vector<geometry_msgs::PoseStamped> &plan);
-
-}
+        bool cancel();
+    };
+};
 #endif

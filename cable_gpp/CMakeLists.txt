@@ -128,7 +128,7 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 
 ## Declare a C++ library
 add_library(${PROJECT_NAME}
-  # include/cable_gpp/cable_gpp.h
+  include/cable_gpp/cable_gpp.h
   src/cable_gpp.cpp
 )
 

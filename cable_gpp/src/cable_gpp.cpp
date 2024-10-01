@@ -1,25 +1,42 @@
 #include <pluginlib/class_list_macros.h>
+
 #include <cable_gpp/cable_gpp.h>
 
-PLUGINLIB_EXPORT_CLASS(cable_gpp::cable_gpp, mbf_costmap_core::CostmapPlanner)
+PLUGINLIB_EXPORT_CLASS(cable_gpp_ns::cable_gpp, mbf_costmap_core::CostmapPlanner)
 
-using namespace std;
+// using namespace std;
 
-namespace cable_gpp {
-
-    cable_gpp::cable_gpp(){
-
-    cable_gpp::cable_gpp(std::string name, costmap_2d::Costmap2DROS* costmap_ros){
-        initialize(name, costmap_ros);
+namespace cable_gpp_ns
+{
+    cable_gpp::cable_gpp()
+    {
+    }
+    
+    cable_gpp::cable_gpp(std::string name, costmap_2d::Costmap2DROS *costmap_ros)
+    {
+        // initialize(name, costmap_ros);
         ROS_INFO_STREAM("Constructor");
     }
+
+    void cable_gpp::initialize(std::string name, costmap_2d::Costmap2DROS *costmap_ros)
+    {
+
     }
 
-    void cable_gpp::initialize(std::string name, costmap_2d::Costmap2DROS* costmap_ros){
-        ROS_INFO_STREAM("Initialize");
+    void cable_gpp::initialize(std::string name, 
+                            costmap_2d::Costmap2DROS *costmap_ros,
+                            std::string global_frame)
+    {
+        
     }
 
-    bool cabel_gpp::makePlan(const geometry_msgs::PoseStamped& start, const geometry_msgs::PoseStamped& goal,  std::vector<geometry_msgs::PoseStamped>& plan ){ 
+    uint32_t cable_gpp::makePlan(const geometry_msgs::PoseStamped &start,
+                        const geometry_msgs::PoseStamped &goal,
+                        double tolerance,
+                        std::vector<geometry_msgs::PoseStamped> &plan,
+                        double &cost,
+                        std::string &message)
+    {
         ROS_INFO_STREAM("MAKEPLAN");
         // plan.push_back(start);
         // for (int i=0; i<20; i++){
@@ -37,9 +54,12 @@ namespace cable_gpp {
         //     plan.push_back(new_goal);
         // }
         // plan.push_back(goal);
-        // return true;
-
+        
+        return true;
     }
 
-
+    bool cable_gpp::cancel()
+    {
+        return false;
+    }
 }
