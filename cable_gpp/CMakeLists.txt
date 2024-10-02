@@ -12,6 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   nav_core
   pluginlib
+  mbf_costmap_core
   roscpp
   tf
 )
@@ -108,7 +109,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 INCLUDE_DIRS include
 LIBRARIES cable_gpp
-CATKIN_DEPENDS costmap_2d geometry_msgs nav_core pluginlib roscpp tf
+CATKIN_DEPENDS costmap_2d geometry_msgs nav_core pluginlib roscpp tf mbf_costmap_core
 # DEPENDS system_lib
 )
 
@@ -127,7 +128,7 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 
 
 ## Declare a C++ library
-add_library(${PROJECT_NAME}
+add_library(cable_gpp
   include/cable_gpp/cable_gpp.h
   src/cable_gpp.cpp
 )
@@ -140,7 +141,7 @@ add_library(${PROJECT_NAME}
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/cable_gpp_node.cpp)
+# add_executable(${PROJECT_NAME}_node src/cable_gpp.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -153,7 +154,7 @@ add_library(${PROJECT_NAME}
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(${PROJECT_NAME}
+target_link_libraries(cable_gpp
   ${catkin_LIBRARIES}
 )
 
